@@ -38,14 +38,12 @@ summary comment MUST carry the disclosure as its own short paragraph, so the PR 
 self-documenting and nobody mistakes "merge-ready" for a green run:
 
 ```markdown
-**CI is still running on this head.** Branch protection plus the QA-approval gate
-hold the actual merge; this run's verdict covers the work, not a green run. Checks
-still pending: {names}. A follow-up comment will report the CI outcome.
+**CI pending:** {check names and links} on this head. Required CI and QA approval
+still gate merge. A follow-up will report the CI result.
 ```
 
-Adjust the first clause to what the run actually concluded. Drop the last sentence
-when the run will not follow up — never promise a follow-up the run does not intend
-to make. When no required check was pending, omit the paragraph entirely rather than
+Drop the last sentence when the run will not follow up — never promise a
+follow-up the run does not intend to make. When no required check was pending, omit the paragraph entirely rather than
 writing a "CI was green" variant; the summary's own validation section covers that.
 
 ## Swapping the lock to `ci-monitoring`
@@ -78,8 +76,9 @@ whose `headSha` is the PR head SHA, and treat any run whose `status` is not
 `completed` as a pending check. Only when both readings are quiet is CI settled;
 otherwise keep waiting under the same budget. A descriptor that exposes no run-level
 operation cannot support the cross-check — then say so in the CI-result comment
-("verdict rests on the check surface alone") rather than dropping the caveat. A CI-result comment states which
-reading it rests on (how many checks, how many workflow runs at that SHA), because a
+("verdict rests on the check surface alone") rather than dropping the caveat. A
+CI-result comment states which reading it rests on (how many checks, how many
+workflow runs at that SHA), because a
 "green" that came from an empty list is the one failure this whole file exists to
 keep off a pull request.
 
